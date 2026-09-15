@@ -128,7 +128,8 @@ agent-passport/
 │   └── compliance-auditor/          # Auditor sub-agent (agent.yaml, SOUL.md, DUTIES.md)
 │
 ├── exports/                         # Pre-compiled multi-framework Passport Visas
-│   ├── openai-assistant.json        # OpenAI Assistants API export
+│   ├── openai-agent.py              # OpenAI Agents SDK Python definition
+│   ├── openai-assistant.json        # OpenAI Assistants API specification
 │   ├── crewai-agent.py              # CrewAI multi-agent crew export
 │   ├── lyzr-agent.json              # Official Lyzr Agent Studio export
 │   ├── CLAUDE.md                    # Claude Code instructions export

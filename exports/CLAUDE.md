@@ -125,7 +125,7 @@ Computes standard commercial lending ratios including Debt Service Coverage Rati
 Full instructions: `skills/financial-ratio-analysis/SKILL.md`
 
 
-<!-- Model: claude-opus-4-6 -->
+<!-- Model: gpt-4o -->
 
 ## Compliance
 

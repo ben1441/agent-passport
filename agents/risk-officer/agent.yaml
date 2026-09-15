@@ -6,9 +6,9 @@ author: Sentinel Risk Systems
 license: Apache-2.0
 
 model:
-  preferred: claude-opus-4-6
+  preferred: gpt-4o
   fallback:
-    - gpt-4o
+    - claude-opus-4-6
   constraints:
     temperature: 0.05
     max_tokens: 4096

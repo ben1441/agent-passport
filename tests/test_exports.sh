@@ -11,7 +11,7 @@ echo "============================================================"
 FORMATS=(
   "system-prompt:exports/system-prompt.txt"
   "claude-code:exports/CLAUDE.md"
-  "openai:exports/openai-assistant.json"
+  "openai:exports/openai-agent.py"
   "crewai:exports/crewai-agent.py"
   "lyzr:exports/lyzr-agent.json"
   "cursor:exports/.cursorrules"
@@ -29,6 +29,8 @@ for ENTRY in "${FORMATS[@]}"; do
     exit 1
   fi
 done
+
+cp exports/openai-agent.py exports/openai.py
 
 echo ""
 echo "============================================================"

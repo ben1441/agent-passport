@@ -346,8 +346,8 @@ Regulatory Compliance Auditor (Auditor) - verifies FINRA/SEC/SR11-7 controls and
 # === .gemini/settings.json ===
 {
   "model": {
-    "id": "claude-opus-4-6",
-    "provider": "anthropic"
+    "id": "gpt-4o",
+    "provider": "openai"
   },
   "allowedTools": [
     "bureau-credit-report",
