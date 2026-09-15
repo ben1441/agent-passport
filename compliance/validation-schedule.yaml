@@ -14,4 +14,4 @@ tests:
   - type: stress_testing
     description: Sensitivity evaluation under baseline, adverse, and severely adverse macroeconomic scenarios.
   - type: sod_verification
-    description: Automated penetration testing attempting to bypass Maker-Checker approval boundaries.
+    description: Automated penetration testing attempting to bypass dual-signoff approval boundaries.

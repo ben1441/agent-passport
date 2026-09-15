@@ -9,7 +9,7 @@ input_schema:
       description: Event category (e.g., credit_decision, policy_exception, supervisor_override)
     agent_role:
       type: string
-      description: Role of submitting agent (maker, checker, auditor)
+      description: Role identifier of the submitting agent
     payload:
       type: object
       description: Structured record data including inputs, outputs, and reasoning trace

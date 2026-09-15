@@ -55,14 +55,14 @@ flowchart TD
 ```
 
 ### Inviolable Conflict Matrix
-Sentinel Risk enforces strict segregation of duties between roles:
-- **Maker <-> Checker** — The agent that produces credit memos cannot approve them
-- **Maker <-> Auditor** — The agent that produces credit memos cannot audit them
-- **Checker <-> Auditor** — The agent that approves credit determinations cannot audit the approval
+Sentinel Risk enforces strict segregation of duties across distinct roles:
+- The underwriting originator cannot approve its own credit proposals
+- The underwriting originator cannot audit its own credit proposals
+- The credit reviewer cannot audit its own approval determinations
 
 | Role | Agent | Permissions | Description |
 |------|-------|-------------|-------------|
-| Maker | sentinel-risk | create, submit | Ingests financials, calculates debt service ratios, and drafts credit underwriting memos |
+| Maker | sentinal-agent | create, submit | Ingests financials, calculates debt service ratios, and drafts credit underwriting memos |
 | Checker | risk-officer | review, approve, reject | Independently verifies calculations, performs stress testing, approves or rejects credit |
 | Auditor | compliance-auditor | audit, report | Audits completed evaluations for regulatory adherence, maintains immutable audit trails |
 
@@ -170,7 +170,7 @@ Sentinel Risk achieves **100% green checkmarks across all 10 regulatory audit ca
 - **5. Data Governance**: PII auto-redaction, confidential classification, consent required, bias testing enabled, LDA search enabled.
 - **6. Communications Compliance (FINRA 2210)**: Institutional classification, fair & balanced, no misleading statements, pre-review required.
 - **7. Vendor Management (Fed SR 23-4)**: Due diligence complete, SOC-2 required, AI notification active, subcontractor assessment complete.
-- **8. Segregation of Duties**: 3 distinct roles (`maker`, `checker`, `auditor`), 3 conflict rules, strict state & credential isolation, zero SOD violations detected.
+- **8. Segregation of Duties**: 3 distinct roles (originator, reviewer, and compliance auditor), 3 conflict rules, strict state & credential isolation, zero SOD violations detected.
 - **9. Compliance Artifacts**: All required regulatory artifacts verified in `compliance/` and `RULES.md`.
 - **10. Audit Hooks**: Active lifecycle hooks configured with `compliance: true`.
 

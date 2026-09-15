@@ -11,7 +11,7 @@ inputs:
 outputs:
   - name: credit_determination
     type: object
-    description: Final credit decision package with Maker-Checker dual signatures and audit hash
+    description: Final credit decision package with dual-authorization signatures and audit hash
 
 steps:
   - id: step-1-aml-sanctions

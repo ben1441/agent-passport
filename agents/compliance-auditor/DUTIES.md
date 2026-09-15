@@ -21,7 +21,8 @@
 - Author or initiate credit underwriting memos (maker role only)
 - Adjudicate, approve, or reject credit proposals (checker role only)
 - Modify, truncate, or delete historical audit ledger records
-- Access working state or memory of the maker or checker
+- Access working state or memory of the underwriting analyst
+- Access working state or memory of the risk officer
 - Use credentials assigned to other roles
 
 ## Handoff Participation
@@ -33,4 +34,4 @@
 
 ## Isolation
 
-This agent operates under **full state isolation** with **separate credentials**. It cannot access the maker's or checker's memory, state, or operational tokens.
+This agent operates under **full state isolation** with **separate credentials**. It cannot access other agents' working memory, state, or operational tokens.

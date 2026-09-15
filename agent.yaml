@@ -138,9 +138,12 @@ compliance:
           - report
 
     conflicts:
-      - [maker, checker]
-      - [maker, auditor]
-      - [checker, auditor]
+      - - maker
+        - checker
+      - - maker
+        - auditor
+      - - checker
+        - auditor
 
     assignments:
       sentinal-agent:
