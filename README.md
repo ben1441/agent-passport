@@ -1,5 +1,5 @@
 # Sentinel Risk (`sentinel-risk`)
-### Autonomous Commercial Underwriting & Multi-Agent Regulatory Compliance Steward
+### Autonomous Commercial Underwriting & Multi-Agent Regulatory Compliance Officer
 *Built for the **HiDevs x Lyzr Passport Challenge** under the **OpenGAP (Git Agent Protocol)** Specification v0.1.0*
 
 [![OpenGAP Spec: v0.1.0](https://img.shields.io/badge/OpenGAP_Spec-v0.1.0-blue.svg)](https://github.com/open-gitagent/opengap)
@@ -27,12 +27,12 @@ To comply with **FINRA Rule 3110**, **SEC Rule 17a-4**, and **Federal Reserve SR
 ```mermaid
 flowchart TD
     subgraph INTAKE["1. Application Intake"]
-        BORROWER["Commercial Borrower Application"] --> CA["credit-analyst (MAKER)"]
+        BORROWER["Commercial Borrower Application"] --> SR["sentinel-risk (MAKER)"]
     end
 
     subgraph MAKER["2. Quantitative Underwriting (Maker)"]
-        CA --> SKILL_RATIO["Skill: financial-ratio-analysis<br/>(DSCR, FCCR, Leverage)"]
-        CA --> TOOL_BUREAU["Tool: bureau-credit-report<br/>(Paydex, UCC Filings)"]
+        SR --> SKILL_RATIO["Skill: financial-ratio-analysis<br/>(DSCR, FCCR, Leverage)"]
+        SR --> TOOL_BUREAU["Tool: bureau-credit-report<br/>(Paydex, UCC Filings)"]
         SKILL_RATIO --> MEMO["Preliminary Credit Memo"]
         TOOL_BUREAU --> MEMO
     end
@@ -56,9 +56,15 @@ flowchart TD
 
 ### Inviolable Conflict Matrix
 Sentinel Risk enforces a strict mathematical separation between roles:
-* `[maker] <---> [checker]`: The loan originator (`credit-analyst`) cannot approve its own proposal.
-* `[maker] <---> [auditor]`: The loan originator cannot audit its own file.
+* `[maker] <---> [checker]`: The loan originator (`sentinel-risk`) cannot approve its own proposal.
+* `[maker] <---> [auditor]`: The loan originator (`sentinel-risk`) cannot audit its own file.
 * `[checker] <---> [auditor]`: The credit approver (`risk-officer`) cannot audit its own adjudication.
+
+| Role | Assigned Agent | Permissions | Description |
+|------|----------------|-------------|-------------|
+| **maker** | `sentinel-risk` | `create`, `submit` | Analyzes financials, calculates debt service ratios, and drafts credit underwriting memos |
+| **checker** | `risk-officer` | `review`, `approve`, `reject` | Independently verifies calculations, performs stress testing, approves or rejects credit |
+| **auditor** | `compliance-auditor` | `audit`, `report` | Audits completed evaluations for regulatory adherence, maintains immutable audit trails |
 
 ---
 
@@ -66,14 +72,14 @@ Sentinel Risk enforces a strict mathematical separation between roles:
 
 ```
 agent-passport/
-├── agent.yaml                       # Primary OpenGAP v0.1.0 manifest with full compliance & SOD
+├── agent.yaml                       # Primary OpenGAP v0.1.0 manifest with high-risk compliance & SOD
 ├── SOUL.md                          # Identity, analytical principles, and conservative credit ethos
 ├── RULES.md                         # Hard behavioral invariants, negative boundaries, and HITL triggers
 ├── DUTIES.md                        # Segregation of Duties policy, role permissions, handoff contracts
 ├── AGENTS.md                        # Universal runtime instructions (Claude Code, Cursor, Swarm, CrewAI)
 ├── README.md                        # Documentation and verification guide
 │
-├── skills/                          # Reusable capability modules (agentskills.io standard)
+├── skills/                          # Reusable capability modules (Agent Skills standard)
 │   ├── financial-ratio-analysis/
 │   │   ├── SKILL.md                 # Ratio formulas & policy thresholds
 │   │   ├── scripts/calculate_ratios.py # Deterministic Python calculation engine
@@ -118,7 +124,7 @@ agent-passport/
 │   └── scripts/                     # on-start, on-end, pre-tool, post-tool, on-error scripts
 │
 ├── agents/                          # Recursive sub-agent definitions
-│   ├── credit-analyst/              # Maker sub-agent (agent.yaml, SOUL.md, DUTIES.md)
+│   ├── sentinel-risk.md             # Primary Maker agent definition
 │   ├── risk-officer/                # Checker sub-agent (agent.yaml, SOUL.md, DUTIES.md)
 │   └── compliance-auditor/          # Auditor sub-agent (agent.yaml, SOUL.md, DUTIES.md)
 │
@@ -207,19 +213,6 @@ bunx @open-gitagent/opengap export -f lyzr -o exports/lyzr-agent.json
 bunx @open-gitagent/opengap export -f crewai -o exports/crewai-agent.py
 bunx @open-gitagent/opengap export -f openai -o exports/openai-assistant.json
 ```
-
----
-
-## Submission Checklist for `app.hidevs.xyz/passport`
-
-- [x] 100% compliant with OpenGAP v0.1.0 specification
-- [x] Zero validation errors or warnings (`opengap validate --compliance`)
-- [x] Perfect score on regulatory audit report (`opengap audit`)
-- [x] Dual-authorization Segregation of Duties (Maker-Checker-Auditor)
-- [x] Modular skills with executable calculation and screening engines
-- [x] MCP-compatible tool definitions and Python implementations
-- [x] Multi-format portability exports verified across 8 target environments
-- [x] Chained cryptographic WORM audit ledger in `memory/runtime/audit-ledger.jsonl`
 
 ---
 

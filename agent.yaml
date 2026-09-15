@@ -1,7 +1,7 @@
 spec_version: "0.1.0"
 name: sentinel-risk
 version: 1.0.0
-description: Autonomous Commercial Underwriting & Multi-Agent Regulatory Compliance Officer
+description: Autonomous Commercial Credit Underwriting Analyst (Maker) with Multi-Agent Segregation of Duties
 author: Sentinel Risk Systems
 license: Apache-2.0
 
@@ -24,8 +24,8 @@ tools:
   - immutable-audit-logger
 
 agents:
-  credit-analyst:
-    description: Senior Commercial Credit Analyst (Maker) - evaluates financial statements and borrower ratios
+  sentinel-risk:
+    description: Commercial Credit Underwriting Analyst (Maker) - evaluates financial statements and borrower ratios
   risk-officer:
     description: Chief Credit Risk Officer (Checker) - stress tests assumptions, approves or rejects applications
   compliance-auditor:
@@ -125,7 +125,7 @@ compliance:
       - [checker, auditor]
 
     assignments:
-      credit-analyst:
+      sentinel-risk:
         - maker
       risk-officer:
         - checker
