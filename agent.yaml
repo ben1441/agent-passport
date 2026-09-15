@@ -1,5 +1,5 @@
 spec_version: "0.1.0"
-name: sentinel-risk
+name: sentinal-agent
 version: 1.0.0
 description: Autonomous Commercial Credit Underwriting Analyst (Maker) with Multi-Agent Segregation of Duties
 author: Sentinel Risk Systems
@@ -42,7 +42,7 @@ dependencies:
       risk_assessment: low
 
 agents:
-  sentinel-risk:
+  sentinal-agent:
     description: Commercial Credit Underwriting Analyst (Maker) - evaluates financial statements and borrower ratios
   risk-officer:
     description: Chief Credit Risk Officer (Checker) - stress tests assumptions, approves or rejects applications
@@ -143,7 +143,7 @@ compliance:
       - [checker, auditor]
 
     assignments:
-      sentinel-risk:
+      sentinal-agent:
         - maker
       risk-officer:
         - checker

@@ -1,4 +1,4 @@
-# === .cursor/rules/sentinel-risk.mdc ===
+# === .cursor/rules/sentinal-agent.mdc ===
 ---
 description: Autonomous Commercial Credit Underwriting Analyst (Maker) with Multi-Agent Segregation of Duties
 alwaysApply: true

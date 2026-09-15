@@ -1,5 +1,5 @@
 # === CLAUDE.md ===
-# sentinel-risk
+# sentinal-agent
 
 Autonomous Commercial Credit Underwriting Analyst (Maker) with Multi-Agent Segregation of Duties
 
@@ -58,13 +58,13 @@ The agent must immediately suspend automated execution and invoke supervisory es
 
 # Duties
 
-System-wide segregation of duties policy for the sentinel-risk agent system.
+System-wide segregation of duties policy for the sentinal-agent system.
 
 ## Roles
 
 | Role | Agent | Permissions | Description |
 |------|-------|-------------|-------------|
-| Maker | sentinel-risk | create, submit | Ingests financials, calculates debt service ratios, and drafts credit underwriting memos |
+| Maker | sentinal-agent | create, submit | Ingests financials, calculates debt service ratios, and drafts credit underwriting memos |
 | Checker | risk-officer | review, approve, reject | Independently verifies calculations, performs stress testing, approves or rejects credit |
 | Auditor | compliance-auditor | audit, report | Audits completed evaluations for regulatory adherence, maintains immutable audit trails |
 
@@ -126,7 +126,7 @@ Frameworks: finra, federal_reserve, sec, cfpb
 Enforcement: strict
 
 Role assignments:
-- sentinel-risk: maker
+- sentinal-agent: maker
 - risk-officer: checker
 - compliance-auditor: auditor
 

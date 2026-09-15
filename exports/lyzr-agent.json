@@ -1,5 +1,5 @@
 {
-  "name": "sentinel-risk",
+  "name": "sentinal-agent",
   "description": "Autonomous Commercial Credit Underwriting Analyst (Maker) with Multi-Agent Segregation of Duties",
   "agent_role": "Autonomous Commercial Credit Underwriting Analyst (Maker) with Multi-Agent Segregation of Duties",
   "agent_goal": "Autonomous Commercial Credit Underwriting Analyst (Maker) with Multi-Agent Segregation of Duties",

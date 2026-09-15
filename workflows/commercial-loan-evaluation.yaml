@@ -26,7 +26,7 @@ steps:
 
   - id: step-2-bureau-lookup
     action: Query commercial credit bureau and UCC lien history
-    agent: sentinel-risk
+    agent: sentinal-agent
     tool: bureau-credit-report
     depends_on:
       - step-1-aml-sanctions
@@ -38,7 +38,7 @@ steps:
 
   - id: step-3-ratio-underwriting
     action: Compute DSCR, FCCR, Leverage, and Current Ratio
-    agent: sentinel-risk
+    agent: sentinal-agent
     skill: financial-ratio-analysis
     depends_on:
       - step-2-bureau-lookup

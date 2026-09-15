@@ -1,5 +1,5 @@
 spec_version: "0.1.0"
-name: sentinel-risk
+name: sentinal-agent
 version: 1.0.0
 description: Commercial credit underwriting analyst responsible for financial intake, ratio modeling, and preliminary credit memo compilation
 author: Sentinel Risk Systems
