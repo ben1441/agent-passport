@@ -33,7 +33,7 @@ $$\text{DSCR} = \frac{\text{Net Operating Income}}{\text{Total Debt Service}}$$
 Net Operating Income (NOI) is derived by deducting verified operating expenses from gross revenue, explicitly eliminating discretionary owner add-backs, non-recurring capital gains, and non-cash depreciation.
 
 ### B. Dual-Agent Separation (Segregation of Duties)
-The architecture prevents unilateral credit issuance by decoupling the **Maker** (`credit-analyst`) from the **Checker** (`risk-officer`) and **Auditor** (`compliance-auditor`). State contexts and credentials are partitioned. An approval requires affirmative determination from the Checker based on the Maker's memo, followed by compliance sealing from the Auditor.
+The architecture prevents unilateral credit issuance by decoupling the **Maker** (`sentinel-risk`) from the **Checker** (`risk-officer`) and **Auditor** (`compliance-auditor`). State contexts and credentials are partitioned. An approval requires affirmative determination from the Checker based on the Maker's memo, followed by compliance sealing from the Auditor.
 
 ### C. Downside Sensitivity Stress-Testing
 Per SR 11-7 guidance, credit adequacy is evaluated not merely at base rate, but under stress:

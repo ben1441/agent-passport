@@ -1,0 +1,31 @@
+spec_version: "0.1.0"
+name: sentinel-risk
+version: 1.0.0
+description: Commercial credit underwriting analyst responsible for financial intake, ratio modeling, and preliminary credit memo compilation
+author: Sentinel Risk Systems
+license: Apache-2.0
+
+model:
+  preferred: claude-opus-4-6
+  fallback:
+    - gpt-4o
+    - gemini-1.5-pro
+  constraints:
+    temperature: 0.1
+    max_tokens: 8192
+
+skills:
+  - financial-ratio-analysis
+  - aml-sanctions-screening
+
+tools:
+  - bureau-credit-report
+
+runtime:
+  max_turns: 30
+  timeout: 180
+
+tags:
+  - sentinel-risk
+  - maker
+  - credit-underwriting

@@ -55,16 +55,16 @@ flowchart TD
 ```
 
 ### Inviolable Conflict Matrix
-Sentinel Risk enforces a strict mathematical separation between roles:
-* `[maker] <---> [checker]`: The loan originator (`sentinel-risk`) cannot approve its own proposal.
-* `[maker] <---> [auditor]`: The loan originator (`sentinel-risk`) cannot audit its own file.
-* `[checker] <---> [auditor]`: The credit approver (`risk-officer`) cannot audit its own adjudication.
+Sentinel Risk enforces strict segregation of duties between roles:
+- **Maker <-> Checker** — The agent that produces credit memos cannot approve them
+- **Maker <-> Auditor** — The agent that produces credit memos cannot audit them
+- **Checker <-> Auditor** — The agent that approves credit determinations cannot audit the approval
 
-| Role | Assigned Agent | Permissions | Description |
-|------|----------------|-------------|-------------|
-| **maker** | `sentinel-risk` | `create`, `submit` | Analyzes financials, calculates debt service ratios, and drafts credit underwriting memos |
-| **checker** | `risk-officer` | `review`, `approve`, `reject` | Independently verifies calculations, performs stress testing, approves or rejects credit |
-| **auditor** | `compliance-auditor` | `audit`, `report` | Audits completed evaluations for regulatory adherence, maintains immutable audit trails |
+| Role | Agent | Permissions | Description |
+|------|-------|-------------|-------------|
+| Maker | sentinel-risk | create, submit | Ingests financials, calculates debt service ratios, and drafts credit underwriting memos |
+| Checker | risk-officer | review, approve, reject | Independently verifies calculations, performs stress testing, approves or rejects credit |
+| Auditor | compliance-auditor | audit, report | Audits completed evaluations for regulatory adherence, maintains immutable audit trails |
 
 ---
 
@@ -124,7 +124,6 @@ agent-passport/
 │   └── scripts/                     # on-start, on-end, pre-tool, post-tool, on-error scripts
 │
 ├── agents/                          # Recursive sub-agent definitions
-│   ├── sentinel-risk.md             # Primary Maker agent definition
 │   ├── risk-officer/                # Checker sub-agent (agent.yaml, SOUL.md, DUTIES.md)
 │   └── compliance-auditor/          # Auditor sub-agent (agent.yaml, SOUL.md, DUTIES.md)
 │

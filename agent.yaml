@@ -23,6 +23,24 @@ tools:
   - ofac-sanctions-lookup
   - immutable-audit-logger
 
+dependencies:
+  - name: risk-officer
+    source: ./agents/risk-officer
+    version: 1.0.0
+    mount: agents/risk-officer
+    vendor_management:
+      due_diligence_date: "2026-03-01"
+      soc_report: true
+      risk_assessment: low
+  - name: compliance-auditor
+    source: ./agents/compliance-auditor
+    version: 1.0.0
+    mount: agents/compliance-auditor
+    vendor_management:
+      due_diligence_date: "2026-03-01"
+      soc_report: true
+      risk_assessment: low
+
 agents:
   sentinel-risk:
     description: Commercial Credit Underwriting Analyst (Maker) - evaluates financial statements and borrower ratios
