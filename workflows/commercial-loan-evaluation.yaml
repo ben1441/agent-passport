@@ -1,0 +1,76 @@
+name: commercial-loan-evaluation
+description: End-to-end commercial underwriting pipeline with segregation of duties and regulatory validation
+version: 1.0.0
+
+inputs:
+  - name: borrower_application
+    type: object
+    description: Financial statements, balance sheet, and borrower entity information
+    required: true
+
+outputs:
+  - name: credit_determination
+    type: object
+    description: Final credit decision package with Maker-Checker dual signatures and audit hash
+
+steps:
+  - id: step-1-aml-sanctions
+    action: Screen entity and beneficial owners against OFAC and AML lists
+    agent: compliance-auditor
+    tool: ofac-sanctions-lookup
+    compliance:
+      requires_approval: false
+      audit_level: full
+    outputs:
+      - sanctions_cleared
+
+  - id: step-2-bureau-lookup
+    action: Query commercial credit bureau and UCC lien history
+    agent: credit-analyst
+    tool: bureau-credit-report
+    depends_on:
+      - step-1-aml-sanctions
+    compliance:
+      requires_approval: false
+      audit_level: detailed
+    outputs:
+      - bureau_scores
+
+  - id: step-3-ratio-underwriting
+    action: Compute DSCR, FCCR, Leverage, and Current Ratio
+    agent: credit-analyst
+    skill: financial-ratio-analysis
+    depends_on:
+      - step-2-bureau-lookup
+    compliance:
+      requires_approval: false
+      audit_level: full
+    outputs:
+      - credit_memo
+
+  - id: step-4-risk-adjudication
+    action: Perform stress test sensitivity analysis and determine credit approval
+    agent: risk-officer
+    depends_on:
+      - step-3-ratio-underwriting
+    compliance:
+      requires_approval: true
+      audit_level: full
+    outputs:
+      - approval_determination
+
+  - id: step-5-audit-record
+    action: Record cryptographic audit entry to immutable ledger
+    agent: compliance-auditor
+    tool: immutable-audit-logger
+    depends_on:
+      - step-4-risk-adjudication
+    compliance:
+      requires_approval: false
+      audit_level: full
+    outputs:
+      - audit_receipt
+
+error_handling:
+  on_step_failure: escalate
+  escalation_target: Chief Compliance Officer (CRD# 4892104)

@@ -1,0 +1,20 @@
+layers:
+  - name: baseline_memory
+    path: MEMORY.md
+    max_lines: 200
+    format: markdown
+  - name: session_log
+    path: runtime/dailylog.md
+    format: markdown
+    rotation: daily
+  - name: context_cache
+    path: runtime/context.md
+    format: markdown
+update_triggers:
+  - on_session_end
+  - on_explicit_save
+  - on_milestone
+archive_policy:
+  max_entries: 50
+  compress_after: 90d
+  retention_period: 6y

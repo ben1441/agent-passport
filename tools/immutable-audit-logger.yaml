@@ -1,0 +1,40 @@
+name: immutable-audit-logger
+description: Appends tamper-evident, cryptographically hashed decision records to the regulatory audit log (FINRA Rule 4511 & SEC 17a-4 compliant).
+version: 1.0.0
+input_schema:
+  type: object
+  properties:
+    event_type:
+      type: string
+      description: Event category (e.g., credit_decision, policy_exception, supervisor_override)
+    agent_role:
+      type: string
+      description: Role of submitting agent (maker, checker, auditor)
+    payload:
+      type: object
+      description: Structured record data including inputs, outputs, and reasoning trace
+  required:
+    - event_type
+    - agent_role
+    - payload
+output_schema:
+  type: object
+  properties:
+    entry_id:
+      type: string
+    timestamp_iso:
+      type: string
+    sha256_hash:
+      type: string
+    status:
+      type: string
+implementation:
+  type: script
+  path: immutable-audit-logger.py
+  runtime: python3
+annotations:
+  requires_confirmation: false
+  read_only: false
+  cost: none
+  compliance_sensitive: true
+  idempotent: false

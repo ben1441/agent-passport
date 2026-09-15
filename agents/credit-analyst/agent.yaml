@@ -1,0 +1,29 @@
+spec_version: "0.1.0"
+name: credit-analyst
+version: 1.0.0
+description: Senior Commercial Credit Analyst (Maker role) responsible for financial ratio modeling and credit memo drafting
+author: Sentinel Risk Systems
+license: Apache-2.0
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  fallback:
+    - gpt-4o-mini
+  constraints:
+    temperature: 0.1
+    max_tokens: 4096
+
+skills:
+  - financial-ratio-analysis
+
+tools:
+  - bureau-credit-report
+
+runtime:
+  max_turns: 30
+  timeout: 180
+
+tags:
+  - credit-analyst
+  - maker
+  - financial-modeling

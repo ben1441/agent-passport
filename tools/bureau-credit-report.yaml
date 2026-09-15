@@ -1,0 +1,35 @@
+name: bureau-credit-report
+description: Retrieves commercial bureau credit scores, Paydex rating, UCC filing records, and public lien data.
+version: 1.0.0
+input_schema:
+  type: object
+  properties:
+    entity_name:
+      type: string
+      description: Registered legal name of commercial entity
+    tax_id:
+      type: string
+      description: Federal Employer Identification Number (EIN)
+  required:
+    - entity_name
+output_schema:
+  type: object
+  properties:
+    paydex_score:
+      type: number
+    commercial_credit_score:
+      type: number
+    ucc_filings_count:
+      type: integer
+    active_tax_liens:
+      type: boolean
+implementation:
+  type: script
+  path: bureau-credit-report.py
+  runtime: python3
+annotations:
+  requires_confirmation: false
+  read_only: true
+  cost: low
+  compliance_sensitive: true
+  idempotent: true

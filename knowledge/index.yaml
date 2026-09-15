@@ -1,0 +1,21 @@
+documents:
+  - path: commercial-credit-policy.md
+    tags:
+      - underwriting
+      - credit-policy
+      - dscr
+      - leverage
+      - collateral
+    priority: high
+    always_load: true
+    description: Institutional credit risk underwriting criteria, ratio benchmarks, and collateral advance parameters.
+  - path: regulatory-compliance-handbook.md
+    tags:
+      - compliance
+      - finra
+      - sec
+      - fed-sr117
+      - bsa-aml
+    priority: high
+    always_load: true
+    description: Regulatory oversight handbook detailing FINRA 3110/4511, Fed SR 11-7, and CFPB Fair Lending controls.

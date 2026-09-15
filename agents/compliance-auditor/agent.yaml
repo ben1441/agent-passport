@@ -1,0 +1,30 @@
+spec_version: "0.1.0"
+name: compliance-auditor
+version: 1.0.0
+description: Regulatory Compliance Auditor (Auditor role) responsible for independent oversight, AML/OFAC validation, and immutable audit logging
+author: Sentinel Risk Systems
+license: Apache-2.0
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  fallback:
+    - gpt-4o-mini
+  constraints:
+    temperature: 0.0
+    max_tokens: 4096
+
+skills:
+  - aml-sanctions-screening
+
+tools:
+  - ofac-sanctions-lookup
+  - immutable-audit-logger
+
+runtime:
+  max_turns: 30
+  timeout: 180
+
+tags:
+  - compliance-auditor
+  - auditor
+  - regulatory-oversight

@@ -1,0 +1,28 @@
+spec_version: "0.1.0"
+name: risk-officer
+version: 1.0.0
+description: Chief Credit Risk Officer (Checker role) responsible for independent underwriting verification, stress testing, and approval determination
+author: Sentinel Risk Systems
+license: Apache-2.0
+
+model:
+  preferred: claude-opus-4-6
+  fallback:
+    - gpt-4o
+  constraints:
+    temperature: 0.05
+    max_tokens: 4096
+
+skills:
+  - financial-ratio-analysis
+
+tools: []
+
+runtime:
+  max_turns: 30
+  timeout: 180
+
+tags:
+  - risk-officer
+  - checker
+  - credit-approval

@@ -1,0 +1,42 @@
+mappings:
+  - framework: finra
+    rule: "3110"
+    title: Supervisory Systems
+    control: Mandatory Series 24 designated supervisor, conditional HITL on transactions >$250k, quarterly review cadence, and instantaneous kill switch.
+    implementation: agent.yaml:compliance.supervision
+    status: implemented
+
+  - framework: finra
+    rule: "4511"
+    title: Books and Records Retention
+    control: Structured JSON audit logging, immutable SHA-256 hash chains, 6-year retention period, full prompt/response/tool/decision logging.
+    implementation: agent.yaml:compliance.recordkeeping
+    status: implemented
+
+  - framework: sec
+    rule: "17a-4"
+    title: Electronic Record Storage Requirements
+    control: WORM-compliant tamper-evident logging via immutable-audit-logger MCP tool and runtime audit-ledger.jsonl.
+    implementation: tools/immutable-audit-logger.yaml
+    status: implemented
+
+  - framework: federal_reserve
+    rule: "SR 11-7"
+    title: Supervisory Guidance on Model Risk Management
+    control: Inventory ID tracking (MRM-SR117-2026-042), quarterly validation cadence, conceptual soundness documentation, ongoing monitoring, and outcomes analysis.
+    implementation: compliance/risk-assessment.md#conceptual-soundness
+    status: implemented
+
+  - framework: cfpb
+    rule: "Regulation B / ECOA"
+    title: Equal Credit Opportunity Act & Fair Lending
+    control: Prohibition of protected attributes, automated quantitative attribution, and adverse action notice generation workflow.
+    implementation: workflows/adverse-action-workflow.md
+    status: implemented
+
+  - framework: bsa_aml
+    rule: "31 CFR Chapter X"
+    title: Bank Secrecy Act / OFAC Sanctions Screening
+    control: Mandatory pre-underwriting OFAC SDN fuzzy matching and Politically Exposed Persons (PEP) watchlist verification.
+    implementation: skills/aml-sanctions-screening/SKILL.md
+    status: implemented

@@ -1,0 +1,17 @@
+cadence: quarterly
+last_validation: "2026-06-30"
+next_validation: "2026-09-30"
+lead_validator: "Enterprise Model Validation Group"
+validation_scope:
+  - ratio_calculation_engine
+  - ofac_screening_accuracy
+  - segregation_of_duties_enforcement
+  - prompt_drift_and_hallucination_analysis
+  - adverse_action_fair_lending_parity
+tests:
+  - type: backtesting
+    description: Comparison of model PD/LGD forecasts against realized portfolio performance over 36-month horizon.
+  - type: stress_testing
+    description: Sensitivity evaluation under baseline, adverse, and severely adverse macroeconomic scenarios.
+  - type: sod_verification
+    description: Automated penetration testing attempting to bypass Maker-Checker approval boundaries.

@@ -1,0 +1,165 @@
+spec_version: "0.1.0"
+name: sentinel-risk
+version: 1.0.0
+description: Autonomous Commercial Underwriting & Multi-Agent Regulatory Compliance Officer
+author: Sentinel Risk Systems
+license: Apache-2.0
+
+model:
+  preferred: claude-opus-4-6
+  fallback:
+    - gpt-4o
+    - gemini-1.5-pro
+  constraints:
+    temperature: 0.1
+    max_tokens: 8192
+
+skills:
+  - financial-ratio-analysis
+  - aml-sanctions-screening
+
+tools:
+  - bureau-credit-report
+  - ofac-sanctions-lookup
+  - immutable-audit-logger
+
+agents:
+  credit-analyst:
+    description: Senior Commercial Credit Analyst (Maker) - evaluates financial statements and borrower ratios
+  risk-officer:
+    description: Chief Credit Risk Officer (Checker) - stress tests assumptions, approves or rejects applications
+  compliance-auditor:
+    description: Regulatory Compliance Auditor (Auditor) - verifies FINRA/SEC/SR11-7 controls and audit logs
+
+delegation:
+  mode: explicit
+
+runtime:
+  max_turns: 50
+  timeout: 300
+
+compliance:
+  risk_tier: high
+  frameworks:
+    - finra
+    - federal_reserve
+    - sec
+    - cfpb
+
+  supervision:
+    designated_supervisor: "Chief Compliance Officer (CRD# 4892104)"
+    review_cadence: quarterly
+    human_in_the_loop: conditional
+    escalation_triggers:
+      - confidence_below: 0.85
+      - action_type: credit_decision
+      - error_detected: true
+    override_capability: true
+    kill_switch: true
+
+  recordkeeping:
+    audit_logging: true
+    log_format: structured_json
+    retention_period: 6y
+    log_contents:
+      - prompts_and_responses
+      - tool_calls
+      - decision_pathways
+      - model_version
+      - timestamps
+    immutable: true
+
+  model_risk:
+    inventory_id: "MRM-SR117-2026-042"
+    validation_cadence: quarterly
+    validation_type: full
+    conceptual_soundness: "compliance/risk-assessment.md#conceptual-soundness"
+    ongoing_monitoring: true
+    outcomes_analysis: true
+    drift_detection: true
+    parallel_testing: false
+
+  data_governance:
+    pii_handling: redact
+    data_classification: confidential
+    consent_required: true
+    cross_border: false
+    bias_testing: true
+    lda_search: true
+
+  communications:
+    type: institutional
+    pre_review_required: true
+    fair_balanced: true
+    no_misleading: true
+    disclosures_required: true
+
+  vendor_management:
+    due_diligence_complete: true
+    soc_report_required: true
+    vendor_ai_notification: true
+    subcontractor_assessment: true
+
+  segregation_of_duties:
+    roles:
+      - id: maker
+        description: Analyzes financials, calculates debt metrics, and drafts credit underwriting memos
+        permissions:
+          - create
+          - submit
+      - id: checker
+        description: Independently verifies calculations, performs stress testing, approves or rejects credit
+        permissions:
+          - review
+          - approve
+          - reject
+      - id: auditor
+        description: Audits completed evaluations for regulatory adherence, maintains immutable audit trails
+        permissions:
+          - audit
+          - report
+
+    conflicts:
+      - [maker, checker]
+      - [maker, auditor]
+      - [checker, auditor]
+
+    assignments:
+      credit-analyst:
+        - maker
+      risk-officer:
+        - checker
+      compliance-auditor:
+        - auditor
+
+    isolation:
+      state: full
+      credentials: separate
+
+    handoffs:
+      - action: credit_decision
+        required_roles:
+          - maker
+          - checker
+        approval_required: true
+      - action: policy_exception
+        required_roles:
+          - maker
+          - checker
+          - auditor
+        approval_required: true
+
+    enforcement: strict
+
+tags:
+  - commercial-lending
+  - credit-underwriting
+  - risk-management
+  - finra
+  - sec
+  - federal-reserve
+  - segregation-of-duties
+
+metadata:
+  challenge: "HiDevs Passport Challenge"
+  standard: "OpenGAP v0.1.0"

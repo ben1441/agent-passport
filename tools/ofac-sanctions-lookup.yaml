@@ -1,0 +1,33 @@
+name: ofac-sanctions-lookup
+description: Queries US Treasury OFAC Specially Designated Nationals (SDN) and international anti-terrorism sanctions lists.
+version: 1.0.0
+input_schema:
+  type: object
+  properties:
+    query_name:
+      type: string
+      description: Name of person or entity to screen
+    country_iso:
+      type: string
+      description: ISO 3166-1 two-letter country code
+  required:
+    - query_name
+output_schema:
+  type: object
+  properties:
+    match_found:
+      type: boolean
+    sanction_program:
+      type: string
+    match_score:
+      type: number
+implementation:
+  type: script
+  path: ofac-sanctions-lookup.py
+  runtime: python3
+annotations:
+  requires_confirmation: false
+  read_only: true
+  cost: low
+  compliance_sensitive: true
+  idempotent: true

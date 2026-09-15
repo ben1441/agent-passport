@@ -1,0 +1,35 @@
+hooks:
+  on_session_start:
+    - script: scripts/on-start.sh
+      description: Verify compliance environment, check OFAC updates, and validate supervisory credentials
+      timeout: 15
+      compliance: true
+      fail_open: false
+
+  on_session_end:
+    - script: scripts/on-end.sh
+      description: Flush audit buffers and sign daily session log with cryptographic checksum
+      timeout: 15
+      compliance: true
+      fail_open: false
+
+  pre_tool_use:
+    - script: scripts/pre-tool.sh
+      description: Enforce PII redaction and verify segregation of duties role permissions before tool invocation
+      timeout: 10
+      compliance: true
+      fail_open: false
+
+  post_tool_use:
+    - script: scripts/post-tool.sh
+      description: Record tool call input/output hashes into immutable audit ledger
+      timeout: 10
+      compliance: true
+      fail_open: false
+
+  on_error:
+    - script: scripts/on-error.sh
+      description: Trap system or policy errors, trigger supervisory alert, and preserve error trace
+      timeout: 15
+      compliance: true
+      fail_open: false
